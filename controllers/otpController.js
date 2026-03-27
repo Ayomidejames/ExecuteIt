@@ -31,7 +31,7 @@ const otpVerify = async(req, res) => {
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a202c; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; padding: 40px; border-radius: 12px; background-color: #ffffff; text-align: center;">
                     <div style="font-size: 50px; margin-bottom: 20px;">✅</div>
                     <h2 style="color: #2d3748; margin-bottom: 10px; font-size: 26px;">Verification Successful!</h2>
-                    <p style="font-size: 18px; color: #4a5568;">Welcome to the team, <strong>${username}</strong>. Your account is now fully active.</p>
+                    <p style="font-size: 18px; color: #4a5568;">Welcome to the team, <strong>${user.username}</strong>. Your account is now fully active.</p>
                     <p style="font-size: 16px; color: #718096; margin-bottom: 30px;">
                         You're all set to start building, managing, and executing your projects with ExecuteIt.
                     </p>

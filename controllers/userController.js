@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 const createUser = async(req, res) => {
     try{
-        const { username, email, password} = req.body
+        const { username, email, password, adminRegistrationKey} = req.body
         if ( !username || !email || !password) {
             res.status(400).json({msg: 'Enter all fields to register.'})
         }
@@ -13,6 +13,10 @@ const createUser = async(req, res) => {
         if (existingUser) res.status(400).json({msg: 'User already exists in db.'})
         const hashedPassword = await bcrypt.hash(password, 10)
         let assignedRole = 'user'
+        // to register as an admin, user must input the exact adminRegistrationKey
+        if (adminRegistrationKey && adminRegistrationKey === process.env.ADMIN_REGISTRATION_KEY) {
+            assignedRole = 'admin'
+        }
         // generate otp and send to user email
         const {otp, otpInvalid} = generateOTP()
         const newUser = new User({
@@ -66,7 +70,7 @@ const createUser = async(req, res) => {
         }
         return res.status(201).json(newUser)
     } catch(error) {
-        res.status(500).json({msg: 'Server'})
+        res.status(500).json({msg: error.message})
     }
 }
 
