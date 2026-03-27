@@ -1,0 +1,9 @@
+Implement authentication: Signing Up and Logging independent
+Authorization: Only individuals that are logged in can add tasks
+Tasks should be independent of individuals
+individuals should be able to mark tasks as pending, in progress or completed.
+Send in email reminders at specific times if the tasks' status hasn't changed to ensure that the tasks are executed.
+
+To register as an admin, user must have the admin secret key
+Admin rights: Admins can view all users but regular users cannot view admins.
+It is also restricted that regular users can view other users.
