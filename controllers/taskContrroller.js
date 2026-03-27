@@ -35,7 +35,50 @@ const viewTasks = async(req, res) => {
     }
 }
 
+const viewTask = async(req, res) => {
+    try {
+        const user = req.user
+        const { id } = req.params
+        const task = await Task.findOne({ _id: id, userId: user._id})
+        if (!task) return res.status(404).json({msg: 'Task not found.'})
+        return res.status(200).json(task)
+    } catch (error) {
+        return res.status(500).json({msg: error.message})
+    }
+}
+
+const updateTask = async(req, res) => {
+    try {
+        const { title, description, status } = req.body
+        const user = req.user
+        const { id } = req.params
+        const task = await Task.findOneAndUpdate(
+            {_id: id, userId: user._id}, 
+            {title, description, status}, 
+            {new: true})
+        if (!task) return res.status(400).json({msg: `task with id ${id} not found.`})
+        return res.status(200).json(task)
+    } catch (error) {
+        return res.status(500).json({msg: error.message})
+    }
+}
+
+const deleteTask = async(req, res) => {
+    try {
+        const user = req.user
+        const { id } = req.params
+        const task = await Task.findOneAndDelete({_id: id, userId: user._id})
+        if (!task) return res.status(404).json({msg: `task with id ${id} doesn't exist`})
+        return res.status(200).json({msg: `task with id ${id} deleted successfully.`})
+    } catch (error) {
+        return res.status(500).json({msg: error.message})
+    }
+}
+
 module.exports = {
     addTask,
-    viewTasks
+    viewTasks,
+    viewTask,
+    updateTask,
+    deleteTask
 }

@@ -74,6 +74,30 @@ const createUser = async(req, res) => {
     }
 }
 
+const getUsers = async(req, res) => {
+    try {
+        const users = await User.find()
+        if(!users) return res.status(404).json({msg: 'No user found'})
+        return res.status(200).json(users)
+    } catch (error) {
+        res.status(500).json({msg: error.message})
+    }
+}
+
+const deleteUser = async(req, res) => {
+    try {
+        const user = req.user
+        const oneUser = await User.findOne({_id: user._id})
+        if(!oneUser) return res.status(404).json({msg: 'No user found'})
+        await oneUser.deleteOne()
+        return res.status(200).json({msg: 'user deleted successfully'})
+    } catch (error) {
+        res.status(500).json({msg: error.message})
+    }
+}
+
 module.exports = {
-    createUser
+    createUser,
+    getUsers,
+    deleteUser
 }

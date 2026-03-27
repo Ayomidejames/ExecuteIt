@@ -52,7 +52,7 @@ const otpVerify = async(req, res) => {
                 </div>
                 `
             }
-        return relayMail(mailObj)
+        relayMail(mailObj)
         }
         catch (error) {console.log(error)}
         return res.status(200).json({msg: 'Your account has been verified. Proceed to login.'})
