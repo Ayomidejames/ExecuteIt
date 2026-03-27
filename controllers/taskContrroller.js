@@ -4,7 +4,9 @@ const addTask = async(req, res) => {
     try {
         const { title, description, status } = req.body
         const user = req.user
-        if ( !title || !description ) return res.status(400).json({msg: 'Enter all fields to add task'})
+        if ( !title || !description ) {
+            return res.status(400).json({msg: 'Enter all fields to add task'})
+        }
         const existingTask = await Task.findOne({
             title: title,
             userId: user._id,
@@ -24,10 +26,19 @@ const addTask = async(req, res) => {
 const viewTasks = async(req, res) => {
     try {
         const user = req.user
-        const tasks = await Task.find({ userId: user._id})
+        const dbQuery = { userId: user._id}
+        // query to filter by category
+        if (req.query.category) {
+            dbQuery.category = req.query.category
+        }
+        // query to filter by status
+        if (req.query.status) {
+            dbQuery.status = req.query.status
+        }
+        const tasks = await Task.find(dbQuery)
         if (!tasks) return res.status(404).json({msg: 'No tasks found.'})
         return res.status(200).json({
-            count: tasks.length,
+            total: tasks.length,
             tasks
         })
     } catch (error) {
@@ -39,8 +50,10 @@ const viewTask = async(req, res) => {
     try {
         const user = req.user
         const { id } = req.params
-        const task = await Task.findOne({ _id: id, userId: user._id})
+        const time = Date.now()
+        const task = await Task.findOne({ _id: id, userId: user._id}).lean()
         if (!task) return res.status(404).json({msg: 'Task not found.'})
+        if (task.deadline < time) { task.due = true }
         return res.status(200).json(task)
     } catch (error) {
         return res.status(500).json({msg: error.message})

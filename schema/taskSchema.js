@@ -18,6 +18,16 @@ const taskSchema = mongoose.Schema({
         type: String,
         enum : ['pending', 'in-progress', 'completed'],
         default: 'pending'
+    },
+    category: {
+        type: String,
+        enum: ['Work', 'Personal', 'Finance', 'Health', 'Other'],
+        default: 'other'
+    },
+    deadline: Date,
+    due: {
+        type: Boolean,
+        default: false
     }
 })
 
