@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Plus, Edit2, Trash2, X, AlertCircle, Clock, CheckCircle2, Circle } from 'lucide-react';
+import { Plus, Edit2, Trash2, X, AlertCircle, Clock, CheckCircle2, Circle, CheckSquare } from 'lucide-react';
 import axiosClient from '../../api/axiosClient';
 
 const Tasks = () => {
