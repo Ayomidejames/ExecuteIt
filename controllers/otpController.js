@@ -86,7 +86,7 @@ const otpResend = async(req, res) => {
             const mailObj = {
                 mailFrom: `ExecuteIt ${process.env.EX_EMAIL}`,
                 mailTo: email,
-                subject: 'Welcome to ExecuteIt! Your Account is Verified',
+                subject: 'OTP resent request',
                 body: `
                 <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #1a202c; line-height: 1.6; max-width: 600px; margin: 0 auto; border: 1px solid #e2e8f0; padding: 40px; border-radius: 12px; background-color: #ffffff;">
                     <h2 style="color: #2d3748; margin-bottom: 20px; font-size: 24px;">Need a new code?</h2>

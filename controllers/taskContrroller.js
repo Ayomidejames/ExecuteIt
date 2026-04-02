@@ -8,9 +8,8 @@ const addTask = async(req, res) => {
             return res.status(400).json({msg: 'Enter all fields to add task'})
         }
         const existingTask = await Task.findOne({
-            title: title,
-            userId: user._id,
-            status: 'pending'
+            title,
+            userId: user._id
         })
         if (existingTask) return res.status(400).json({msg: 'Task already exist. Please complete task.'})
         const newTask = new Task({
@@ -27,6 +26,7 @@ const viewTasks = async(req, res) => {
     try {
         const user = req.user
         const dbQuery = { userId: user._id}
+        
         // query to filter by category
         if (req.query.category) {
             dbQuery.category = req.query.category

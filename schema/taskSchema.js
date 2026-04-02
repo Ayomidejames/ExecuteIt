@@ -22,7 +22,7 @@ const taskSchema = mongoose.Schema({
     category: {
         type: String,
         enum: ['Work', 'Personal', 'Finance', 'Health', 'Other'],
-        default: 'other'
+        default: 'Other'
     },
     deadline: Date,
     due: {
