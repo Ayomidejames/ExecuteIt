@@ -173,10 +173,17 @@ const resetPassword = async(req, res) => {
         console.log(error)
     }
 }
+const Logout = async(req, res) => {
+    return res
+        .cookie('token', '', {httpOnly: true, expires: new Date(0), sameSite: 'strict'})
+        .status(200)
+        .json({msg: 'Logged out successfully.'})
+}
 
 module.exports = {
     SignIn,
     resetPasswordRequest,
     validatePassword,
-    resetPassword
+    resetPassword,
+    Logout
 }

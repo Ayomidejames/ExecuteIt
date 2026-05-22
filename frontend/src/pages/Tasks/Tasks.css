@@ -1,0 +1,55 @@
+.tasks-page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.empty-state {
+  padding: 64px 24px;
+  text-align: center;
+  border: 2px dashed rgba(0,0,0,0.05);
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.empty-icon {
+  width: 96px;
+  height: 96px;
+  background: rgba(0, 229, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.mb-4 {
+  margin-bottom: 24px;
+}
+
+.loading-state {
+  padding: 48px;
+  text-align: center;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn:hover {
+  color: var(--accent-teal);
+  background-color: rgba(0, 229, 255, 0.1);
+}
+
+.delete-btn:hover {
+  color: var(--accent-pink);
+  background-color: rgba(255, 64, 129, 0.1);
+}
