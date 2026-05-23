@@ -12,10 +12,10 @@ connectDB()
 
 port = process.env.PORT
 
-// middlewares that helps us able to send urlencoded and json data to the request body
+// middlewares
 server.use(cors({
-    origin: ['http://localhost:5173/'],
-    credential: true
+    origin: ['http://localhost:5173', 'https://execute-it-roan.vercel.app/'],
+    credentials: true
 }))
 server.use(cookieParser())
 server.use(express.json())
