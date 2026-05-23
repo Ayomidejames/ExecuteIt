@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const server = express()
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
@@ -12,6 +13,10 @@ connectDB()
 port = process.env.PORT
 
 // middlewares that helps us able to send urlencoded and json data to the request body
+server.use(cors({
+    origin: ['http://localhost:5173/'],
+    credential: true
+}))
 server.use(cookieParser())
 server.use(express.json())
 server.use(express.urlencoded({extended: true}))
