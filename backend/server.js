@@ -14,7 +14,7 @@ port = process.env.PORT
 
 // middlewares
 server.use(cors({
-    origin: ['http://localhost:5173', 'https://execute-it-roan.vercel.app/'],
+    origin: ['http://localhost:5173', 'https://execute-it-roan.vercel.app'],
     credentials: true
 }))
 server.use(cookieParser())
