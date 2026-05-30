@@ -38,5 +38,6 @@ const relayMail = async ({mailFrom, mailTo, subject, body}) => {
 module.exports = {
     generateOTP,
     relayMail
-
 }
+numbers = [2, 7, 11, 15]; target = 9
+

@@ -8,6 +8,7 @@ const userRouter = require('./routers/userRouter')
 const otpRouter = require('./routers/otpRouter')
 const authRouter = require('./routers/authRouter')
 const taskRouter = require('./routers/taskRouter')
+const quoteRouter = require('./routers/quoteRouter')
 connectDB()
 
 port = process.env.PORT
@@ -25,6 +26,7 @@ server.use('/api', userRouter)
 server.use('/api', otpRouter)
 server.use('/api', authRouter)
 server.use('/api', taskRouter)
+server.use('/api', quoteRouter)
 server.listen(port, () => {
     console.log(`Server is listening on port ${port}`)
 })

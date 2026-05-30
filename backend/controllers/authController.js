@@ -48,7 +48,6 @@ const SignIn = async(req, res) => {
     }
 }
 
-
 const resetPasswordRequest = async(req, res) => {
     const { email } = req.body
     try {
